@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from users.views import RegistrationAPIView, LoginAPIView
+from food.views import CategoryCreate, CategoryList, CategoryThreeInOne
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    #################
     path("register/", RegistrationAPIView.as_view(), name="register"),
     path("login/", LoginAPIView.as_view(), name="login"),
+    ##################
+    path("category/", CategoryCreate.as_view(), name="create-category"),
+    path("category/list", CategoryList.as_view(), name="list-category"),
+    path("category/<int:object_id>", CategoryThreeInOne.as_view(), name="rud-category"),
 ]
