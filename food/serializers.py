@@ -10,7 +10,7 @@ from .models import Category, Recipe, Ingredient
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ["name", "id"]
+        fields = ["name", "id", "image"]
 
 
 

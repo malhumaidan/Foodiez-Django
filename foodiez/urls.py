@@ -14,9 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from users.views import RegistrationAPIView, LoginAPIView
-from food.views import CategoryCreate, CategoryList, CategoryThreeInOne
+from food.views import CategoryCreate, CategoryList, CategoryThreeInOne, CategoryViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r"categories", CategoryViewSet, basename="categoty")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,7 +29,8 @@ urlpatterns = [
     path("register/", RegistrationAPIView.as_view(), name="register"),
     path("login/", LoginAPIView.as_view(), name="login"),
     ##################
-    path("category/", CategoryCreate.as_view(), name="create-category"),
-    path("category/list", CategoryList.as_view(), name="list-category"),
-    path("category/<int:object_id>", CategoryThreeInOne.as_view(), name="rud-category"),
+    # path("category/", CategoryCreate.as_view(), name="create-category"),
+    # path("category/list", CategoryList.as_view(), name="list-category"),
+    # path("category/<int:object_id>", CategoryThreeInOne.as_view(), name="rud-category"),
+    path('', include(router.urls)),
 ]

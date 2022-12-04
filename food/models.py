@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
+    image = models.ImageField(blank=True)
 
 
     def __str__(self):
