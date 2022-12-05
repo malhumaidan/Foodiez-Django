@@ -16,6 +16,9 @@ class Category(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(max_length=150)
 
+    class Meta:
+        ordering = ['name']
+
 
     def __str__(self):
         return self.name
@@ -26,9 +29,12 @@ class Recipe(models.Model):
     image = models.ImageField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="recipes")
     ingredients = models.ManyToManyField(Ingredient, related_name="recipes")
-    users = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipes")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipes")
+
+    class Meta:
+        ordering = ['title']
 
 
     def __str__(self):
-        return f"{self.title} recipe"
+        return self.title
 
