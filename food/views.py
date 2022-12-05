@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .serializers import CategorySerializer
-from .models import Category
+from .serializers import CategorySerializer, RecipeSerializer
+from .models import Category, Recipe
 from rest_framework import viewsets
 
 # Create your views here.
@@ -42,6 +42,20 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 ####################################### Recipe ##############################################
+
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all ()
+    serializer_class = RecipeSerializer
+
+    def get_permissions(self):
+
+        if self.action == 'create':
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+
+
 
 
 
