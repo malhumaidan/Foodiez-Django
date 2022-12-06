@@ -18,10 +18,18 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Recipe
         fields = ["title", "body", "image", "category", "ingredients", "user"]
+        # depth = 1 (yousef changes)
 
+
+    # def create(self, validated_data):
+    #     validated_data['user'] = self.context.get('request').user
+    #     validated_data['category'] = Category.objects.get(id=validated_data['category'])
+    #     print(validated_data['category'])
+    #     return super().create(validated_data) (yousef changesgit )
 
 ####################################### Ingredient ##############################################
 class IngredientsSercializer(serializers.ModelSerializer):
