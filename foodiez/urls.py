@@ -18,6 +18,8 @@ from django.urls import path, include
 from users.views import RegistrationAPIView, LoginAPIView
 from food.views import  CategoryViewSet, RecipeViewSet
 from rest_framework.routers import DefaultRouter
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register(r"categories", CategoryViewSet, basename="category")
@@ -34,4 +36,9 @@ urlpatterns = [
     # path("category/list", CategoryList.as_view(), name="list-category"),
     # path("category/<int:object_id>", CategoryThreeInOne.as_view(), name="rud-category"),
     path('', include(router.urls)),
+    ##################
+
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
