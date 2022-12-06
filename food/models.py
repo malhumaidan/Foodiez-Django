@@ -14,7 +14,7 @@ class Category(models.Model):
 
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.TextField()
 
     class Meta:
         ordering = ['name']
