@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Ingredient, Recipe, Ingredient
+from .models import Category, Recipe, Ingredient
 
 
 
@@ -32,7 +32,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     #     return super().create(validated_data) (yousef changesgit )
 
 ####################################### Ingredient ##############################################
-class IngredientsSercializer(serializers.ModelSerializer):
+class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
         fields = ["body"]
