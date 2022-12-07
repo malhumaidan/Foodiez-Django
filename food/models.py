@@ -14,7 +14,7 @@ class Category(models.Model):
 
 
 class Ingredient(models.Model):
-    name = models.TextField()
+    Ingredient = models.TextField()
 
 
 
