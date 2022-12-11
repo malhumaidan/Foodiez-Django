@@ -25,6 +25,7 @@ class Recipe(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
     image = models.ImageField()
+    inputingerdients = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="recipes")
     ingredients = models.ManyToManyField(Ingredient, related_name="recipes")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipes")
